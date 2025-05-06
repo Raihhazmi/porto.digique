@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Murah by Digique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+            background: linear-gradient(#cdffd8, #94b9ff);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #2c3e50;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: left;
+            padding-left: -550px;
+        }
+
+        .navbar .logo img {
+            width: 100px; /* Adjust size as needed */
+            height: auto;
+            z-index: 1001;
+            
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .navbar .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links li a:hover {
+            color: #3498db;
+        }
+
+        .language-toggle {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .language-toggle:hover {
+            background-color: #2980b9;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/hero1.gif');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero .btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .hero .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Section */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: transparent;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        /* About Section */
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+            
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        /* Modal for Project Images */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .asem {
+            padding-left: -300px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .fototesti{
+            width: 100%;
+        }
+
+        .testimonial-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .testimonial-card p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-card h4 {
+            font-size: 1.1rem;
+            color: #3498db;
+        }
+
+        /* Why Us Section */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .why-us-item {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+        }
+
+        .why-us-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #3498db;
+        }
+
+        /* Contact Section */
+        .contact {
+            font: optional;
+            background: transparent;
+            color: #000000;
+            text-align: center;
+            padding: 1rem;
+            width: 15000 px;
+        }
+
+        .contact a {
+            color: #2b2791;
+            text-decoration: none;
+        }
+
+        .contact a[href^="https://wa.me"] {
+            color: #2328c3; /* WhatsApp green */
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color:#000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .navbar .nav-links {
+                gap: 1rem;
+            }
+
+            .navbar .nav-links li a {
+                font-size: 0.9rem;
+            }
+
+            .language-toggle {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .project-card img {
+                height: 150px;
+            }
+
+            .navbar .logo img {
+                width: 80px; /* Smaller logo on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="asem">
+                <a href="#home" class="logo">
+                    <img src="img/logo1.png" alt="Portofolio Murah Logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" data-key="nav_home">Home</a></li>
+                <li><a href="#about" data-key="nav_about">Tentang</a></li>
+                <li><a href="#services" data-key="nav_services">Layanan</a></li>
+                <li><a href="#projects" data-key="nav_projects">Proyek</a></li>
+                <li><a href="#testimonials" data-key="nav_testimonials">Testimoni</a></li>
+                <li><a href="#why-us" data-key="nav_why_us">Keunggulan</a></li>
+                <li><a href="#contact" data-key="nav_contact">Kontak</a></li>
+                <li><button class="language-toggle" onclick="toggleLanguage()">EN</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div>
+            <h1 data-key="hero_title">Tampil Profesional, Raih Peluang Lebih Besar</h1>
+            <p data-key="hero_subtitle">Portofolio digital elegan dan terjangkau untuk pelajar, mahasiswa, dan profesional.</p>
+            <a href="#contact" class="btn" data-key="hero_btn">Hubungi Kami</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <h2 data-key="about_title">Tentang Kami</h2>
+        <p data-key="about_text">Kami adalah tim desain kreatif yang berdedikasi untuk menyediakan portofolio digital profesional dan menarik. Dengan harga terjangkau, kami membantu individu dari berbagai kalangan—pelajar, mahasiswa, pencari kerja, hingga profesional—untuk membangun personal branding yang kuat melalui desain portofolio visual yang relevan dan modern.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <h2 data-key="services_title">Layanan Kami</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 data-key="service_1_title">Desain Portofolio Digital (PDF)</h3>
+                <p data-key="service_1_text">Portofolio elegan siap kirim atau unggah online.</p>
+            </div>
+            <div class="service-card">
+                <h3 data-key="service_2_title">Konsultasi Konten & Struktur</h3>
+                <p data-key="service_2_text">Bimbingan menyusun isi portofolio agar rapi dan menarik.</p>
+            </div>
+            <div class="service-card">
+                <h3 data-key="service_3_title">Portofolio Website Pribadi</h3>
+                <p data-key="service_3_text">Tampil online dengan tampilan modern dan responsif.</p>
+            </div>
+            <div class="service-card">
+                <h3 data-key="service_4_title">Desain Template Kustom</h3>
+                <p data-key="service_4_text">Desain sesuai identitas pribadi atau bidang keahlian.</p>
+            </div>
+            <div class="service-card">
+                <h3 data-key="service_5_title">Portofolio Bahasa Inggris</h3>
+                <p data-key="service_5_text">Siap untuk beasiswa atau peluang kerja internasional.</p>
+            </div>
+            <div class="service-card">
+                <h3 data-key="service_6_title">Revisi Desain (1–2x)</h3>
+                <p data-key="service_6_text">Hasil akhir sesuai keinginan klien.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <h2 data-key="projects_title">Proyek Kami</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openModal('img/project1.png')">
+                <img src="img/project1.png" alt="Project 1">
+                <h3 data-key="project_1_title">Portofolio Digital Mahasiswa</h3>
+            </div>
+            <div class="project-card" onclick="openModal('img/project2.png')"> 
+                <img src="img/project2.png" alt="Project 2">
+                <h3 data-key="project_2_title">Website Pribadi Profesional</h3>
+            </div>
+            <div class="project-card" onclick="openModal('img/project3.png')">
+                <img src="img/project3.png" alt="Project 3">
+                <h3 data-key="project_3_title">Template Kustom Keren</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Project Images -->
+    <div class="modal" id="imageModal">
+        <span class="modal-close" onclick="closeModal()">×</span>
+        <img id="modalImage" src="" alt="Project Image">
+    </div>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials">
+        <h2 data-key="testimonials_title">Testimoni Pelanggan</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <img class="fototesti"src="img/testi1new.jpg">
+                <h4 data-key="testimonial_1_name">rizal, Mahasiswa</h4>
+            </div>
+            <div class="testimonial-card">
+                <img class="fototesti"src="img/testi2new.jpg">
+                <h4 data-key="testimonial_2_name">shakira, Mahasiswa</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="section why-us">
+        <h2 data-key="why_us_title">Keunggulan Kami</h2>
+        <div class="why-us-grid">
+            <div class="why-us-item">
+                <h4 data-key="why_us_1_title">Harga Terjangkau</h4>
+                <p data-key="why_us_1_text">Layanan premium tanpa harga premium.</p>
+            </div>
+            <div class="why-us-item">
+                <h4 data-key="why_us_2_title">Desain Profesional</h4>
+                <p data-key="why_us_2_text">Tampilan sesuai tren dan standar industri.</p>
+            </div>
+            <div class="why-us-item">
+                <h4 data-key="why_us_3_title">Layanan Ramah</h4>
+                <p data-key="why_us_3_text">Selalu siap membantu lewat chat atau konsultasi.</p>
+            </div>
+            <div class="why-us-item">
+                <h4 data-key="why_us_4_title">Proses Cepat</h4>
+                <p data-key="why_us_4_text">Kami menghargai waktu klien dengan hasil tepat waktu.</p>
+            </div>
+            <div class="why-us-item">
+                <h4 data-key="why_us_5_title">Desain Fleksibel</h4>
+                <p data-key="why_us_5_text">Disesuaikan dengan gaya dan kebutuhan pribadi.</p>
+            </div>
+            <div class="why-us-item">
+                <h4 data-key="why_us_6_title">Revisi Mudah</h4>
+                <p data-key="why_us_6_text">Hasil akhir bisa direvisi tanpa ribet.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <h2 data-key="contact_title">Kontak Kami</h2>
+        <p data-key="contact_phone"><strong>Telepon:</strong> <a href="https://wa.me/+6282152370779?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20portofolio%20Anda" target="_blank">+62 821-5237-0779</a></p>
+        <p data-key="contact_email"><strong>Email:</strong> <a href="mailto:lostsongsaga@gmail.com">lostsongsaga@gmail.com</a></p>
+        <p data-key="contact_instagram"><strong>Instagram:</strong> <a href="https://instagram.com/portofolio.murah" target="_blank">@portofolio.murah</a></p>
+        <p data-key="contact_address"><strong>Alamat:</strong> Landasan Ulin, Banjarbaru, Kalimantan Selatan</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p data-key="footer_text">© 2025 Portofolio Murah by Digique. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Language Data
+        const translations = {
+            id: {
+                nav_home: "Home",
+                nav_about: "Tentang",
+                nav_services: "Layanan",
+                nav_projects: "Proyek",
+                nav_testimonials: "Testimoni",
+                nav_why_us: "Keunggulan",
+                nav_contact: "Kontak",
+                hero_title: "Tampil Profesional, Raih Peluang Lebih Besar",
+                hero_subtitle: "Portofolio digital elegan dan terjangkau untuk pelajar, mahasiswa, dan profesional.",
+                hero_btn: "Hubungi Kami",
+                about_title: "Tentang Kami",
+                about_text: "Kami adalah tim desain kreatif yang berdedikasi untuk menyediakan portofolio digital profesional dan menarik. Dengan harga terjangkau, kami membantu individu dari berbagai kalangan—pelajar, mahasiswa, pencari kerja, hingga profesional—untuk membangun personal branding yang kuat melalui desain portofolio visual yang relevan dan modern.",
+                services_title: "Layanan Kami",
+                service_1_title: "Desain Portofolio Digital (PDF)",
+                service_1_text: "Portofolio elegan siap kirim atau unggah online.",
+                service_2_title: "Konsultasi Konten & Struktur",
+                service_2_text: "Bimbingan menyusun isi portofolio agar rapi dan menarik.",
+                service_3_title: "Portofolio Website Pribadi",
+                service_3_text: "Tampil online dengan tampilan modern dan responsif.",
+                service_4_title: "Desain Template Kustom",
+                service_4_text: "Desain sesuai identitas pribadi atau bidang keahlian.",
+                service_5_title: "Portofolio Bahasa Inggris",
+                service_5_text: "Siap untuk beasiswa atau peluang kerja internasional.",
+                service_6_title: "Revisi Desain (1–2x)",
+                service_6_text: "Hasil akhir sesuai keinginan klien.",
+                projects_title: "Proyek Kami",
+                project_1_title: "Portofolio Digital Mahasiswa",
+                project_2_title: "Website Pribadi Profesional",
+                project_3_title: "Template Kustom Keren",
+                testimonials_title: "Testimoni Pelanggan",
+                testimonial_1_text: "\"Desain portofolio sangat profesional dan membantu saya mendapatkan beasiswa!\"",
+                testimonial_1_name: "Sarah, Mahasiswa",
+                testimonial_2_text: "\"Proses cepat dan layanan ramah. Sangat puas dengan hasilnya!\"",
+                testimonial_2_name: "Budi, Freelancer",
+                testimonial_3_text: "\"Website pribadi saya sekarang terlihat modern dan menarik!\"",
+                testimonial_3_name: "Anna, Desainer Grafis",
+                why_us_title: "Keunggulan Kami",
+                why_us_1_title: "Harga Terjangkau",
+                why_us_1_text: "Layanan premium tanpa harga premium.",
+                why_us_2_title: "Desain Profesional",
+                why_us_2_text: "Tampilan sesuai tren dan standar industri.",
+                why_us_3_title: "Layanan Ramah",
+                why_us_3_text: "Selalu siap membantu lewat chat atau konsultasi.",
+                why_us_4_title: "Proses Cepat",
+                why_us_4_text: "Kami menghargai waktu klien dengan hasil tepat waktu.",
+                why_us_5_title: "Desain Fleksibel",
+                why_us_5_text: "Disesuaikan dengan gaya dan kebutuhan pembaca.",
+                why_us_6_title: "Revisi Mudah",
+                why_us_6_text: "Hasil akhir bisa direvisi tanpa ribet.",
+                contact_title: "Kontak Kami",
+                contact_phone: "<strong>Telepon:</strong> <a href='https://wa.me/+6282152370779?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20portofolio%20Anda' target='_blank'>+62 821-5237-0779</a>",
+                contact_email: "<strong>Email:</strong> <a href='mailto:lostsongsaga@gmail.com'>lostsongsaga@gmail.com</a>",
+                contact_instagram: "<strong>Instagram:</strong> <a href='https://instagram.com/portofolio.murah' target='_blank'>@portofolio.murah</a>",
+                contact_address: "<strong>Alamat:</strong> Landasan Ulin, Banjarbaru, Kalimantan Selatan",
+                footer_text: "© 2025 Portofolio Murah by Digique. All Rights Reserved."
+            },
+            en: {
+                nav_home: "Home",
+                nav_about: "About",
+                nav_services: "Services",
+                nav_projects: "Projects",
+                nav_testimonials: "Testimonials",
+                nav_why_us: "Why Us",
+                nav_contact: "Contact",
+                hero_title: "Look Professional, Seize Greater Opportunities",
+                hero_subtitle: "Elegant and affordable digital portfolios for students, graduates, and professionals.",
+                hero_btn: "Contact Us",
+                about_title: "About Us",
+                about_text: "We are a creative design team dedicated to providing professional and captivating digital portfolios. With affordable prices, we assist individuals from various backgrounds—students, graduates, job seekers, and professionals—in building strong personal branding through relevant and modern visual portfolio designs.",
+                services_title: "Our Services",
+                service_1_title: "Digital Portfolio Design (PDF)",
+                service_1_text: "Elegant portfolios ready to send or upload online.",
+                service_2_title: "Content & Structure Consultation",
+                service_2_text: "Guidance in organizing portfolio content to be neat and appealing.",
+                service_3_title: "Personal Portfolio Website",
+                service_3_text: "Go online with a modern and responsive design.",
+                service_4_title: "Custom Template Design",
+                service_4_text: "Designs tailored to personal identity or expertise.",
+                service_5_title: "English Portfolio",
+                service_5_text: "Ready for scholarships or international job opportunities.",
+                service_6_title: "Design Revision (1–2x)",
+                service_6_text: "Final results tailored to client preferences.",
+                projects_title: "Our Projects",
+                project_1_title: "Student Digital Portfolio",
+                project_2_title: "Professional Personal Website",
+                project_3_title: "Cool Custom Template",
+                testimonials_title: "Customer Testimonials",
+                testimonial_1_text: "\"The portfolio design is very professional and helped me secure a scholarship!\"",
+                testimonial_1_name: "Sarah, Student",
+                testimonial_2_text: "\"Fast process and friendly service. Very satisfied with the results!\"",
+                testimonial_2_name: "Budi, Freelancer",
+                testimonial_3_text: "\"My personal website now looks modern and attractive!\"",
+                testimonial_3_name: "Anna, Graphic Designer",
+                why_us_title: "Why Choose Us",
+                why_us_1_title: "Affordable Pricing",
+                why_us_1_text: "Premium services without premium prices.",
+                why_us_2_title: "Professional Design",
+                why_us_2_text: "Designs aligned with industry trends and standards.",
+                why_us_3_title: "Friendly Service",
+                why_us_3_text: "Always ready to assist via chat or consultation.",
+                why_us_4_title: "Fast Process",
+                why_us_4_text: "We value clients’ time with timely results.",
+                why_us_5_title: "Flexible Design",
+                why_us_5_text: "Customized to personal style and needs.",
+                why_us_6_title: "Easy Revisions",
+                why_us_6_text: "Final results can be revised hassle-free.",
+                contact_title: "Contact Us",
+                contact_phone: "<strong>Phone:</strong> <a href='https://wa.me/+6282152370779?text=Hello%2C%20I%27m%20interested%20in%20your%20portfolio%20services' target='_blank'>+62 821-5237-0779</a>",
+                contact_email: "<strong>Email:</strong> <a href='mailto:lostsongsaga@gmail.com'>lostsongsaga@gmail.com</a>",
+                contact_instagram: "<strong>Instagram:</strong> <a href='https://instagram.com/portofolio.murah' target='_blank'>@portofolio.murah</a>",
+                contact_address: "<strong>Address:</strong> Landasan Ulin, Banjarbaru, South Kalimantan",
+                footer_text: "© 2025 Portofolio Murah by Digique. All Rights Reserved."
+            }
+        };
+
+        // Language Toggle Function
+        let currentLanguage = 'id';
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'id' ? 'en' : 'id';
+            document.querySelector('.language-toggle').textContent = currentLanguage === 'id' ? 'EN' : 'ID';
+            document.documentElement.lang = currentLanguage;
+
+            // Update all elements with data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                element.innerHTML = translations[currentLanguage][key];
+            });
+        }
+
+        // Smooth Scroll for Nav Links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = '#1a252f';
+            } else {
+                navbar.style.backgroundColor = '#2c3e50';
+            }
+        });
+
+        // Modal Functions for Project Images
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = src;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
